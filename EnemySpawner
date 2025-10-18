@@ -1,0 +1,19 @@
+using UnityEngine;
+
+public class EnemySpawner : MonoBehaviour
+{
+    public GameObject enemyPrefab;
+    public Transform target;
+    public float spawnInterval = 3f;
+
+    void Start()
+    {
+        InvokeRepeating("SpawnEnemy", 1f, spawnInterval);
+    }
+
+    void SpawnEnemy()
+    {
+        var e = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        e.GetComponent<EnemyMove>().target = target;
+    }
+}

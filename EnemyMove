@@ -1,0 +1,22 @@
+using UnityEngine;
+
+public class EnemyMove : MonoBehaviour
+{
+    public float speed = 2f;
+    public Transform target;
+
+    void Update()
+    {
+        if (target)
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Base"))
+        {
+            Debug.Log("Enemy reached the base!");
+            Destroy(gameObject);
+        }
+    }
+}
